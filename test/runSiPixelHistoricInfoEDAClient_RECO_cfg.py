@@ -1,6 +1,6 @@
 import FWCore.ParameterSet.Config as cms 
 
-process = cms.Process("SiPixelHistoricInfoEDAClient_RECO") 
+process = cms.Process("SiPixelHistoricInfoEDAClient") 
 
 process.load("FWCore.MessageService.MessageLogger_cfi")
 
@@ -21,7 +21,7 @@ process.siPixelDigis.IncludeErrors = True
 process.load("EventFilter.SiStripRawToDigi.SiStripRawToDigis_standard_cff")
 process.siStripDigis.ProductLabel = 'source'
 
-process.load("Configuration.StandardSequences.Reconstruction_cff")
+# process.load("Configuration.StandardSequences.Reconstruction_cff")
 
 process.load("RecoLocalTracker.SiPixelClusterizer.SiPixelClusterizer_cfi")
 process.load("RecoLocalTracker.SiPixelRecHits.SiPixelRecHits_cfi")
@@ -51,26 +51,29 @@ process.source = cms.Source("PoolSource",
   debugVebosity = cms.untracked.uint32(10)
 ) 
 process.maxEvents = cms.untracked.PSet(
-  input = cms.untracked.int32(10)
+  input = cms.untracked.int32(-1)
 )
 process.load("CondCore.DBCommon.CondDBSetup_cfi")
 process.CondDBSetup.DBParameters.authenticationPath = cms.untracked.string('/afs/cern.ch/cms/DB/conddb')
 process.PoolDBOutputService = cms.Service("PoolDBOutputService",
   process.CondDBSetup, 
-  connect = cms.string('oracle://cms_orcoff_prep/CMS_COND_PIXEL'), 
-  # connect = cms.string('sqlite_file:test.db'),
+  # connect = cms.string('oracle://cms_orcoff_prep/CMS_COND_PIXEL'), 
+  connect = cms.string('sqlite_file:testPixelHistory.db'),
   timetype = cms.untracked.string('runnumber'),
   toPut = cms.VPSet(
     cms.PSet(
       record = cms.string('SiPixelPerformanceSummaryRcd'),
-      tag = cms.string('SiPixelPerformanceSummary_21X_DQMdummy')
+      tag = cms.string('SiPixelPerformanceSummary_test')
     )
   )
 )
 process.sipixelhistoricinfoEDAclient = cms.EDFilter("SiPixelHistoricInfoEDAClient",
   printDebug = cms.untracked.bool(False),
   writeHisto = cms.untracked.bool(False),
-  outputDir = cms.untracked.string('/tmp/schuang')
+  outputDir = cms.untracked.string('.')
+)
+process.preScaler = cms.EDFilter("Prescaler",
+  prescaleFactor = cms.int32(1)
 )
 process.dqmEnv = cms.EDFilter("DQMEventInfo",
   subSystemFolder = cms.untracked.string('Pixel'),
@@ -84,7 +87,7 @@ process.dqmSaver = cms.EDFilter("DQMFileSaver",
   environment = cms.untracked.string('Online'),
   saveAtRunEnd = cms.untracked.bool(True),
   prescaleTime = cms.untracked.int32(-1),
-  dirName = cms.untracked.string('/tmp/schuang')
+  dirName = cms.untracked.string('.')
 )
 process.DQMStore = cms.Service("DQMStore",
   referenceFileName = cms.untracked.string(''),
@@ -103,11 +106,10 @@ process.trackerLocalReco = cms.Sequence(process.siPixelLocalReco*process.siStrip
 process.trackReconstruction = cms.Sequence(process.trackerLocalReco*process.offlineBeamSpot*process.recopixelvertexing*process.ckftracks) #*process.rstracks 
 
 process.monitorTrack = cms.Sequence(process.SiPixelTrackResidualSource)
-process.monitors = cms.Sequence(process.SiPixelDigiSource*process.SiPixelClusterSource*process.SiPixelRecHitSource)
+process.monitors = cms.Sequence(process.SiPixelDigiSource*process.SiPixelClusterSource*process.SiPixelRecHitSource*process.SiPixelTrackResidualSource)
 
 process.dqmModules = cms.Sequence(process.dqmEnv*process.dqmSaver)
 
-# process.traditional = cms.Path(process.RawToDigi*process.reconstruction*process.monitors*process.sipixelhistoricinfoEDAclient*process.dqmModules)
-# process.pathDigi = cms.Path(process.SiPixelDigiSource*process.sipixelhistoricinfoEDAclient) #*process.dqmModules
-
-process.pathAll = cms.Path(process.trackReconstruction*process.monitors*process.sipixelhistoricinfoEDAclient) #*process.dqmModules
+# process.onlyDigi = cms.Path(process.SiPixelDigiSource*process.sipixelhistoricinfoEDAclient)
+process.onlyTracker = cms.Path(process.trackReconstruction*process.monitors*process.sipixelhistoricinfoEDAclient)
+# process.allDets = cms.Path(process.RawToDigi*process.reconstruction*process.monitors*process.sipixelhistoricinfoEDAclient*process.dqmModules)
