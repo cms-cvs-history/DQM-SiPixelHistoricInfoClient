@@ -33,14 +33,15 @@ process.PoolDBESSource = cms.ESSource("PoolDBESSource",
   )
 )
 process.siPixelHistoricInfoReader = cms.EDFilter("SiPixelHistoricInfoReader",
-  printDebug = cms.untracked.bool(False),
-  outputFile = cms.untracked.string('testPixelHistory.root'),
   variables = cms.untracked.vstring(
     "errorType",
     "ndigis", "adc",
     "nclusters", "charge", "sizeX", "sizeY",
     "nRecHits",
     "residualX", "residualY"
-  )
+  ), 
+  normEvents = cms.untracked.bool(False),
+  printDebug = cms.untracked.bool(False),
+  outputFile = cms.untracked.string('testPixelHistory.root')
 )
 process.path = cms.Path(process.siPixelHistoricInfoReader) 
