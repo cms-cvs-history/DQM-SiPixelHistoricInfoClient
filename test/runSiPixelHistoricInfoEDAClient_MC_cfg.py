@@ -55,12 +55,12 @@ process.load("CondCore.DBCommon.CondDBSetup_cfi")
 process.CondDBSetup.DBParameters.authenticationPath = cms.untracked.string('/afs/cern.ch/cms/DB/conddb')
 process.PoolDBOutputService = cms.Service("PoolDBOutputService",
   process.CondDBSetup, 
-  connect = cms.string('sqlite_file:testPixelHistory.db'),
+  connect = cms.string('sqlite_file:pixelhistory.db'),
   timetype = cms.untracked.string('runnumber'),
   toPut = cms.VPSet(
     cms.PSet(
       record = cms.string('SiPixelPerformanceSummaryRcd'),
-      tag = cms.string('SiPixelPerformanceSummary_test')
+      tag = cms.string('SiPixelPerformanceSummary_MC')
     )
   )
 )
@@ -102,10 +102,9 @@ process.siStripLocalReco = cms.Sequence(process.siStripDigis*process.siStripZero
 process.trackerLocalReco = cms.Sequence(process.siPixelLocalReco*process.siStripLocalReco)
 process.trackReconstruction = cms.Sequence(process.trackerLocalReco*process.offlineBeamSpot*process.recopixelvertexing*process.ckftracks) #*process.rstracks 
 
-process.monitorTrack = cms.Sequence(process.SiPixelTrackResidualSource)
 process.monitors = cms.Sequence(process.SiPixelRawDataErrorSource*process.SiPixelDigiSource*process.SiPixelClusterSource*process.SiPixelRecHitSource*process.SiPixelTrackResidualSource)
 
 process.dqmModules = cms.Sequence(process.dqmEnv*process.dqmSaver)
 
 process.onlyTracker = cms.Path(process.trackReconstruction*process.monitors*process.sipixelhistoricinfoEDAclient)
-# process.allDets = cms.Path(process.RawToDigi*process.reconstruction*process.monitors*process.sipixelhistoricinfoEDAclient*process.dqmModules)
+# process.more = cms.Path(process.RawToDigi*process.reconstruction*process.monitors*process.sipixelhistoricinfoEDAclient*process.dqmModules)
