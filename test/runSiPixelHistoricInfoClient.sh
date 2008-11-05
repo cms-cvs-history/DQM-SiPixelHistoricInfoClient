@@ -1,5 +1,7 @@
 #!/bin/bash
 
+eval `scramv1 ru -sh`
+
 filelist=$1 
 filetype="_"$2 
 frontierTag=$3
