@@ -1,5 +1,7 @@
 #!/bin/bash
 
+eval `scramv1 ru -sh`
+
 filetype="_"$1
 
 template="readSiPixelPerformanceSummary_all_template_cfg.py"
