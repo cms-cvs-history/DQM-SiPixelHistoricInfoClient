@@ -13,7 +13,7 @@ else
   if [ ! -d $myDir ]; then 
     mkdir $myDir 
   fi
-  echo 'Pixel DQM PhysicsData runs will be copied to '$myDir
+  echo "Pixel DQM PhysicsData runs will be copied to "$myDir
 fi 
 
 for file in $(nsls $dqmDir | grep DQM_PhysicsData_Run | grep root); do
