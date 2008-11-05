@@ -16,6 +16,9 @@ else
   echo "Pixel DQM PhysicsData runs will be copied to "$myDir
 fi 
 
+
+# stage files, to speed up the copy job: 
+
 for file in $(nsls $dqmDir | grep DQM_PhysicsData_Run | grep root); do
   filenameLength=`echo $file | awk '{print(length($1))}'`
   fileLength=`nsls -l $dqmDir/$file | awk '{print $5}'`
@@ -33,6 +36,9 @@ for file in $(nsls $dqmDir | grep DQM_PhysicsData_Run | grep root); do
     fi
   fi 
 done 
+
+
+# copy files: 
 
 for file in $(nsls $dqmDir | grep DQM_PhysicsData_Run | grep root); do
   filenameLength=`echo $file | awk '{print(length($1))}'`
@@ -52,6 +58,9 @@ for file in $(nsls $dqmDir | grep DQM_PhysicsData_Run | grep root); do
 done 
 
 exit
+
+
+# special treatment to left-over if necessary, case dependent
 
 for runNumber in 54842; do
   echo DQM_PhysicsData_Run$runNumber.root" to be copied now"
