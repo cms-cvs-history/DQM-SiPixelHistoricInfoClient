@@ -29,7 +29,7 @@ for file in $(nsls $dqmDir | grep DQM_PhysicsData_Run | grep root); do
       stager_qry -M $dqmDir/$file
     else 
       echo "Alternative to 0-length file "$file
-      nsls $dqmDir | grep DQM_PhysicsData | grep $runNumber
+      nsls -l $dqmDir | grep DQM_PhysicsData | grep $runNumber
     fi
   fi 
 done 
@@ -46,7 +46,7 @@ for file in $(nsls $dqmDir | grep DQM_PhysicsData_Run | grep root); do
       rfcp $dqmDir/$file $myDir
     else 
       echo "Alternative to 0-length file "$file
-      nsls $dqmDir | grep DQM_PhysicsData | grep $runNumber
+      nsls -l $dqmDir | grep DQM_PhysicsData | grep $runNumber
     fi
   fi 
 done 
