@@ -2,7 +2,7 @@
 
 filetype="_"$1
 
-template="readSiPixelPerformanceSummary_template_cfg.py"
+template="readSiPixelPerformanceSummary_all_template_cfg.py"
 perfsumTag="SiPixelPerformanceSummary"$filetype
 
   if [ $filetype = "_DQM" -o $filetype = "_RAW" -o $filetype = "_RECO" ]; then
