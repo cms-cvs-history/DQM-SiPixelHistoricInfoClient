@@ -5,7 +5,6 @@ process = cms.Process("SiPixelHistoricInfoEDAClient")
 process.load("FWCore.MessageService.MessageLogger_cfi")
 
 process.load("Configuration.StandardSequences.MagneticField_cff")
-process.load("Configuration.GlobalRuns.ForceZeroTeslaField_cff")
 
 process.load("Configuration.StandardSequences.Geometry_cff")
 
@@ -57,7 +56,7 @@ process.load("CondCore.DBCommon.CondDBSetup_cfi")
 process.CondDBSetup.DBParameters.authenticationPath = cms.untracked.string('/afs/cern.ch/cms/DB/conddb')
 process.PoolDBOutputService = cms.Service("PoolDBOutputService",
   process.CondDBSetup, 
-  connect = cms.string('oracle://cms_orcoff_prep/CMS_COND_PIXEL_COMM_21X'), 
+  connect = cms.string('oracle://cms_orcoff_prep/CMS_COND_PIXEL_COMM_21X'),
   timetype = cms.untracked.string('runnumber'),
   toPut = cms.VPSet(
     cms.PSet(

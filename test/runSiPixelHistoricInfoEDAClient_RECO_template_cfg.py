@@ -5,7 +5,6 @@ process = cms.Process("SiPixelHistoricInfoEDAClient")
 process.load("FWCore.MessageService.MessageLogger_cfi")
 
 process.load("Configuration.StandardSequences.MagneticField_cff")
-process.load("Configuration.GlobalRuns.ForceZeroTeslaField_cff")
 
 process.load("Configuration.StandardSequences.Geometry_cff")
 
