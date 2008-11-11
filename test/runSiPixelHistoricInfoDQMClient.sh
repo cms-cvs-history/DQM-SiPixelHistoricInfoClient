@@ -24,6 +24,6 @@ else
     sed -e "s#DQMoutputFiles#$inputFile#" \
         -e "s#FFFFF#$firstRun#" \
 	-e "s#LLLLL#$lastRun#" $template > runSiPixelHistoricInfoDQMClient_dqm_cfg.py
-    # cmsRun runSiPixelHistoricInfoDQMClient_dqm_cfg.py
+    cmsRun runSiPixelHistoricInfoDQMClient_dqm_cfg.py
   done 
 fi
