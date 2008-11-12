@@ -5,10 +5,10 @@ process = cms.Process("SiPixelHistoricInfoDQMClient")
 process.load("FWCore.MessageService.MessageLogger_cfi")
 
 process.source = cms.Source("EmptyIOVSource",
-  timetype = cms.string('runnumber'),
-  interval = cms.uint32(1),
-  firstRun = cms.untracked.uint32(54751),
-   lastRun = cms.untracked.uint32(99999)
+    timetype = cms.string('runnumber'),
+    interval = cms.uint64(1),
+  firstValue = cms.uint64(54751),
+   lastValue = cms.uint64(99999)
 )
 process.load("CondCore.DBCommon.CondDBSetup_cfi")
 process.CondDBSetup.DBParameters.authenticationPath = cms.untracked.string('/afs/cern.ch/cms/DB/conddb')

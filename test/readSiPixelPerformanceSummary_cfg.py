@@ -5,10 +5,10 @@ process = cms.Process("readSiPixelPerformanceSummary")
 process.load("FWCore.MessageService.MessageLogger_cfi")
 
 process.source = cms.Source("EmptyIOVSource",
-  timetype = cms.string('runnumber'),
-  interval = cms.uint32(1),
-  firstRun = cms.untracked.uint32(54751),
-   lastRun = cms.untracked.uint32(99999)
+    timetype = cms.string('runnumber'),
+    interval = cms.uint64(1),
+  firstValue = cms.uint64(68496),
+   lastValue = cms.uint64(70200)
 )
 # process.load("CondCore.DBCommon.CondDBCommon_cfi")
 # process.CondDBCommon.connect = 'sqlite_file:SiPixelHistory_MC.db'
@@ -27,7 +27,7 @@ process.PoolDBESSource = cms.ESSource("PoolDBESSource",
   toGet = cms.VPSet(
     cms.PSet(
       record = cms.string('SiPixelPerformanceSummaryRcd'),
-      tag = cms.string('SiPixelPerformanceSummary_test')
+      tag = cms.string('SiPixelPerformanceSummary_DQMtier0')
     )
   )
 )
