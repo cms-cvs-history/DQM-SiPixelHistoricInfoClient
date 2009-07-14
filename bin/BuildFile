@@ -2,7 +2,7 @@
   <use name=FWCore/Framework>
   <use name=CondCore/DBCommon>
   <lib name=testDQMServicesDiagnostic>
-  <lib name=DQMSiPixelHistoricInfoClient>
+  <lib name=testDQMSiPixelHistoricInfoClient>
 </bin>
 
 

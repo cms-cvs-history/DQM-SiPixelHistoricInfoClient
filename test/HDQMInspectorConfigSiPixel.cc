@@ -1,4 +1,4 @@
-#include "DQM/SiPixelHistoricInfoClient/interface/HDQMInspectorConfigSiPixel.h"
+#include "DQM/SiPixelHistoricInfoClient/test/HDQMInspectorConfigSiPixel.h"
 
 HDQMInspectorConfigSiPixel::HDQMInspectorConfigSiPixel ()
 {
