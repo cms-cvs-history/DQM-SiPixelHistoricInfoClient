@@ -1,3 +1,0 @@
-/afs/cern.ch/cms/CAF/CMSCOMM/COMM_DQM/data/Cosmics/070/674/DQM_V0001_R000070674__Cosmics__Commissioning08-PromptReco-v2__RECO.root
-/afs/cern.ch/cms/CAF/CMSCOMM/COMM_DQM/data/Cosmics/070/675/DQM_V0001_R000070675__Cosmics__Commissioning08-PromptReco-v2__RECO.root
-/afs/cern.ch/cms/CAF/CMSCOMM/COMM_DQM/data/Cosmics/070/681/DQM_V0001_R000070681__Cosmics__Commissioning08-PromptReco-v2__RECO.root
