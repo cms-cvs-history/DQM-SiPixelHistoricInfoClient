@@ -9,12 +9,11 @@
 
 class HDQMInspectorConfigSiPixel : public HDQMInspectorConfigBase
 {
-  public:
-    HDQMInspectorConfigSiPixel ();
-    virtual ~HDQMInspectorConfigSiPixel ();
+ public:
+  HDQMInspectorConfigSiPixel ();
+  virtual ~HDQMInspectorConfigSiPixel ();
     
-    std::string translateDetId (const uint32_t) const;
-
+  std::string translateDetId (const uint32_t) const;
 };
 
 

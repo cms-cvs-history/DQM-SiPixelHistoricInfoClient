@@ -4,11 +4,9 @@ HDQMInspectorConfigSiPixel::HDQMInspectorConfigSiPixel ()
 {
 }
 
-
 HDQMInspectorConfigSiPixel::~HDQMInspectorConfigSiPixel ()
 {
 }
-
 
 std::string HDQMInspectorConfigSiPixel::translateDetId(const uint32_t id) const
 {
