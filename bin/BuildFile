@@ -1,12 +1,6 @@
-<bin name=SiPixelHDQMInspector file=SiPixelHDQMInspector.cc>
-  <use name=FWCore/Framework>
-  <use name=CondCore/DBCommon>
-  <lib name=DQMServicesDiagnostic>
-  <lib name=testDQMSiPixelHistoricInfoClient>
+<bin name="SiPixelHDQMInspector" file="SiPixelHDQMInspector.cc">
+ <use name="DQM/SiPixelHistoricInfoClient">
+ <use name="DQMServices/Diagnostic">
+ <lib name="DQMServicesDiagnostic">
+ <lib name="DQMSiPixelHistoricInfoClient">
 </bin>
-
-
-
-
-
-
